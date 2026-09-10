@@ -5,6 +5,60 @@
   "lastEmailStatus": "success",
   "recentLogs": [
     {
+      "id": "log-1789070718919-dnz0",
+      "timestamp": "2026-09-10T20:05:18.919Z",
+      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
+      "type": "info"
+    },
+    {
+      "id": "log-1789070668327-cboc",
+      "timestamp": "2026-09-10T20:04:28.327Z",
+      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
+      "type": "info"
+    },
+    {
+      "id": "log-1789070667897-2km9",
+      "timestamp": "2026-09-10T20:04:27.897Z",
+      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
+      "type": "info"
+    },
+    {
+      "id": "log-1789070642422-9lkd",
+      "timestamp": "2026-09-10T20:04:02.422Z",
+      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
+      "type": "info"
+    },
+    {
+      "id": "log-1789070641912-1vr3",
+      "timestamp": "2026-09-10T20:04:01.912Z",
+      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
+      "type": "info"
+    },
+    {
+      "id": "log-1789070600335-7d4m",
+      "timestamp": "2026-09-10T20:03:20.335Z",
+      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
+      "type": "info"
+    },
+    {
+      "id": "log-1789070527982-ol7w",
+      "timestamp": "2026-09-10T20:02:07.982Z",
+      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
+      "type": "info"
+    },
+    {
+      "id": "log-1789070527457-ewk1",
+      "timestamp": "2026-09-10T20:02:07.457Z",
+      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
+      "type": "info"
+    },
+    {
+      "id": "log-1789070235864-aacx",
+      "timestamp": "2026-09-10T19:57:15.865Z",
+      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
+      "type": "info"
+    },
+    {
       "id": "log-1789070071282-1184",
       "timestamp": "2026-09-10T19:54:31.282Z",
       "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
@@ -37,60 +91,6 @@
     {
       "id": "log-1789069737925-cjhl",
       "timestamp": "2026-09-10T19:48:57.925Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789069619303-9hdb",
-      "timestamp": "2026-09-10T19:46:59.303Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789069618833-bexf",
-      "timestamp": "2026-09-10T19:46:58.833Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789069555494-q15v",
-      "timestamp": "2026-09-10T19:45:55.494Z",
-      "message": "Updated fund holding: HDFC Flexi Cap Fund",
-      "type": "info"
-    },
-    {
-      "id": "log-1789069555457-bgd7",
-      "timestamp": "2026-09-10T19:45:55.457Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789069492029-86g6",
-      "timestamp": "2026-09-10T19:44:52.029Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789069491623-or3q",
-      "timestamp": "2026-09-10T19:44:51.623Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789069262114-01i8",
-      "timestamp": "2026-09-10T19:41:02.114Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789069001533-ir51",
-      "timestamp": "2026-09-10T19:36:41.533Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789069001117-xskw",
-      "timestamp": "2026-09-10T19:36:41.117Z",
       "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
       "type": "info"
     }
