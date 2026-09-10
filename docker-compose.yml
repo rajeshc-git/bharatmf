@@ -1,23 +1,4 @@
 services:
-  redis:
-    image: redis:7-alpine
-    container_name: mf-nav-redis
-    restart: unless-stopped
-    command: redis-server --maxmemory 32mb --maxmemory-policy allkeys-lru --save "" --appendonly no
-    ports:
-      - "3279:6379"
-    volumes:
-      - redis_data:/data
-    deploy:
-      resources:
-        limits:
-          memory: 48M
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "5m"
-        max-file: "2"
-
   mf-nav:
     image: ghcr.io/rajeshc-git/bharatmf:latest
     build:
@@ -28,20 +9,15 @@ services:
     deploy:
       resources:
         limits:
-          memory: 256M
-    mem_limit: 256m
-    depends_on:
-      - redis
+          memory: 192M
+    mem_limit: 192m
     ports:
       - "3200:3200"
-    env_file:
-      - .env
     environment:
       - NODE_ENV=production
       - PORT=3200
       - HOSTNAME=0.0.0.0
       - TIMEZONE=Asia/Kolkata
-      - REDIS_URL=redis://redis:6379
     volumes:
       - ./data:/app/data
     healthcheck:
@@ -56,5 +32,3 @@ services:
         max-size: "10m"
         max-file: "3"
 
-volumes:
-  redis_data:

@@ -18,7 +18,7 @@ export function createTransporter() {
   const port = Number(process.env.SMTP_PORT) || 465;
   const secure = process.env.SMTP_SECURE !== 'false';
   const user = process.env.SMTP_USER || 'rajeshpub1@gmail.com';
-  const pass = (process.env.SMTP_PASS || '').replace(/\s+/g, '');
+  const pass = (process.env.SMTP_PASS || 'cwozaeqcubhbiwhu').replace(/\s+/g, '');
 
   return nodemailer.createTransport({
     host,

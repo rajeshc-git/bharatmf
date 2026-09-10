@@ -5,6 +5,18 @@
   "lastEmailStatus": "success",
   "recentLogs": [
     {
+      "id": "log-1789068899986-14bd",
+      "timestamp": "2026-09-10T19:34:59.986Z",
+      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
+      "type": "info"
+    },
+    {
+      "id": "log-1789068899634-djpm",
+      "timestamp": "2026-09-10T19:34:59.634Z",
+      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
+      "type": "info"
+    },
+    {
       "id": "log-1789045416608-1ouj",
       "timestamp": "2026-09-10T13:03:36.608Z",
       "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
