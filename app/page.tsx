@@ -720,15 +720,15 @@ export default function Dashboard() {
                 <div key={fund.schemeCode} className="card-fund">
                   
                   {/* AMC Identity */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 14, flex: 1, minWidth: 260 }}>
+                  <div className="fund-identity">
                     <div className="fund-avatar" style={{ backgroundColor: fund.iconBg || '#FF5B00' }}>
                       {(fund.logoInitial || fund.shortName.slice(0, 3)).toUpperCase()}
                     </div>
-                    <div>
-                      <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-primary)' }}>
+                    <div className="fund-identity-info">
+                      <div className="fund-title">
                         {fund.shortName}
                       </div>
-                      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8, marginTop: 4, fontSize: 11, color: 'var(--text-muted)' }}>
+                      <div className="fund-meta">
                         <span style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>AMFI: {fund.schemeCode}</span>
                         <span>&bull;</span>
                         <span>{fund.category || 'Mutual Fund'}</span>
@@ -740,33 +740,33 @@ export default function Dashboard() {
                     </div>
                   </div>
 
-                  {/* 3 Columns (INDmoney style) */}
+                  {/* 3 Columns (INDmoney / Groww aligned grid) */}
                   <div className="fund-stats-3col">
                     {/* Invested */}
-                    <div>
-                      <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>Invested</div>
-                      <div style={{ fontSize: 15, fontWeight: 800, color: 'var(--text-primary)', marginTop: 2 }}>
+                    <div className="fund-stat-cell">
+                      <div className="fund-stat-label">Invested</div>
+                      <div className="fund-stat-val">
                         {formatCompactINR(fund.investedAmount)}
                       </div>
-                      <div style={{ fontSize: 11, color: 'var(--text-dim)', marginTop: 1 }}>
+                      <div className="fund-stat-sub">
                         {formatINR(fund.investedAmount, false)}
                       </div>
                     </div>
 
                     {/* Current Value */}
-                    <div>
-                      <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>Current Value</div>
-                      <div style={{ fontSize: 15, fontWeight: 800, color: 'var(--text-primary)', marginTop: 2 }}>
+                    <div className="fund-stat-cell">
+                      <div className="fund-stat-label">Current Value</div>
+                      <div className="fund-stat-val">
                         {formatCompactINR(fund.currentValue)}
                       </div>
-                      <div style={{ fontSize: 11, color: 'var(--text-dim)', marginTop: 1 }}>
+                      <div className="fund-stat-sub">
                         {fund.units.toFixed(2)} units
                       </div>
                     </div>
 
                     {/* Gain / Loss */}
-                    <div>
-                      <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>Gain/ Loss</div>
+                    <div className="fund-stat-cell">
+                      <div className="fund-stat-label">Gain/ Loss</div>
                       <div className={`metric-number ${fundPositive ? 'gain-positive' : 'gain-negative'}`} style={{ fontSize: 15, marginTop: 2 }}>
                         <span>{fundPositive ? '▲' : '▼'}</span>
                         <span>{formatCompactINR(fund.totalGainLoss)}</span>
@@ -781,7 +781,7 @@ export default function Dashboard() {
                   </div>
 
                   {/* Action Buttons: View Historical NAV Chart & Edit */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <div className="fund-actions">
                     <button
                       onClick={() => setChartFund(fund)}
                       className="btn-orange"
