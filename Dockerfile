@@ -24,6 +24,9 @@ ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3200
 ENV HOSTNAME="0.0.0.0"
+ENV TZ="Asia/Kolkata"
+ENV TIMEZONE="Asia/Kolkata"
+ENV NODE_OPTIONS="--max-old-space-size=40"
 
 # Persistent data directory
 RUN mkdir -p /app/data
