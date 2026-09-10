@@ -1,9 +1,7 @@
 node_modules
 .next
 .git
-.gitignore
-*.md
+.env
 .env*.local
+*.log
 .DS_Store
-redis_data
-data

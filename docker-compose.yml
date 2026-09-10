@@ -19,16 +19,17 @@ services:
         max-file: "2"
 
   mf-nav:
+    image: ghcr.io/rajeshc-git/bharatmf:latest
     build:
       context: .
       dockerfile: Dockerfile
     container_name: mf-nav-tracker
     restart: unless-stopped
-    mem_limit: 250m
     deploy:
       resources:
         limits:
-          memory: 250M
+          memory: 256M
+    mem_limit: 256m
     depends_on:
       - redis
     ports:
