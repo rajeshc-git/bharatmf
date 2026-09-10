@@ -148,6 +148,6 @@ export function addLog(message: string, type: 'info' | 'success' | 'warning' | '
     message,
     type,
   };
-  state.recentLogs = [newLog, ...(state.recentLogs || [])].slice(0, 50);
+  state.recentLogs = [newLog, ...(state.recentLogs || [])].slice(0, 15);
   saveStoredState(state);
 }

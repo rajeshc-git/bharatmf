@@ -8,6 +8,7 @@ interface CacheEntry {
 
 const memoryCache = new Map<number, CacheEntry>();
 const CACHE_TTL_MS = 3 * 60 * 1000; // 3 minutes cache for fast UI response
+const MAX_MF_CACHE = 10;
 
 export async function fetchSchemeData(schemeCode: number, forceRefresh = false): Promise<MFapiSchemeResponse | null> {
   const cached = memoryCache.get(schemeCode);
@@ -37,6 +38,11 @@ export async function fetchSchemeData(schemeCode: number, forceRefresh = false):
     const json = (await res.json()) as MFapiSchemeResponse;
     if (!json || !Array.isArray(json.data) || json.data.length === 0) {
       throw new Error('Invalid or empty data from MFapi');
+    }
+
+    if (memoryCache.size >= MAX_MF_CACHE) {
+      const oldestKey = memoryCache.keys().next().value;
+      if (oldestKey !== undefined) memoryCache.delete(oldestKey);
     }
 
     memoryCache.set(schemeCode, { timestamp: now, data: json });

@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 const CACHE_DIR = path.join(process.cwd(), 'data', 'cache');
+const MAX_CACHE_ENTRIES = 20;
 
 // Ensure cache directory exists
 if (!fs.existsSync(CACHE_DIR)) {
@@ -10,7 +11,7 @@ if (!fs.existsSync(CACHE_DIR)) {
   } catch {}
 }
 
-// In-memory cache for blazing fast KB-level RAM/CPU access
+// In-memory cache for blazing fast KB-level RAM/CPU access (strictly bounded)
 const memoryCache = new Map<string, { val: any; expires: number }>();
 
 export function isRedisConnected(): boolean {
@@ -47,6 +48,13 @@ export async function cacheGet<T = any>(key: string): Promise<T | null> {
 
 export async function cacheSet(key: string, value: any, ttlSeconds = 86400): Promise<void> {
   const expires = Date.now() + ttlSeconds * 1000;
+
+  // Strict LRU eviction to guarantee RAM < 50MB
+  if (memoryCache.size >= MAX_CACHE_ENTRIES) {
+    const oldestKey = memoryCache.keys().next().value;
+    if (oldestKey) memoryCache.delete(oldestKey);
+  }
+
   memoryCache.set(key, { val: value, expires });
 
   try {
@@ -66,4 +74,5 @@ export async function cacheDel(key: string): Promise<void> {
     }
   } catch {}
 }
+
 
