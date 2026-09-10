@@ -5,7 +5,7 @@ FROM oven/bun:1-alpine AS deps
 WORKDIR /app
 COPY package.json ./
 COPY bun.lock* ./
-RUN bun install
+RUN bun install --frozen-lockfile
 
 # Stage 2: Builder
 FROM oven/bun:1-alpine AS builder
@@ -14,6 +14,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
+ENV NODE_OPTIONS="--max-old-space-size=400"
 RUN bun run build
 
 # Stage 3: Lightweight Production Runner
