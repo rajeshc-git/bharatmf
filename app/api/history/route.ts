@@ -47,17 +47,25 @@ export async function GET(request: Request) {
     const latestDate = parseIndianDate(allPoints[0]!.date);
 
     let daysToKeep = 365;
-    if (timeframe === '1M') daysToKeep = 30;
+    if (timeframe === '1D') daysToKeep = 3;
+    else if (timeframe === '1M') daysToKeep = 30;
     else if (timeframe === '3M') daysToKeep = 90;
     else if (timeframe === '6M') daysToKeep = 180;
     else if (timeframe === '1Y') daysToKeep = 365;
-    else if (timeframe === 'ALL') daysToKeep = 3650; // up to 10 years
+    else if (timeframe === '3Y') daysToKeep = 1095; // 3 Years
+    else if (timeframe === '5Y') daysToKeep = 1825; // 5 Years
+    else if (timeframe === 'ALL') daysToKeep = 36500; // All available history
 
     const cutoffTime = latestDate.getTime() - daysToKeep * 24 * 60 * 60 * 1000;
 
-    const filtered = allPoints
+    let filtered = allPoints
       .filter((pt) => parseIndianDate(pt.date).getTime() >= cutoffTime)
       .reverse(); // Reverse so chronological order (oldest to newest) for charting
+
+    // If 1D has fewer than 2 points, take at least the last 2 available points for comparison
+    if (filtered.length < 2 && allPoints.length >= 2) {
+      filtered = [allPoints[1]!, allPoints[0]!].reverse();
+    }
 
     // Downsample if more than 120 points to keep SVG rendering instant
     let sampled: Array<{ date: string; nav: number }> = [];

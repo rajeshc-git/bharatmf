@@ -11,11 +11,11 @@ interface ChartPoint {
 interface NavChartProps {
   schemeCode: number;
   schemeName: string;
-  initialTimeframe?: '1M' | '3M' | '6M' | '1Y' | 'ALL';
+  initialTimeframe?: '1D' | '1M' | '3M' | '6M' | '1Y' | '3Y' | '5Y' | 'ALL';
 }
 
 export default function NavChart({ schemeCode, schemeName, initialTimeframe = '1Y' }: NavChartProps) {
-  const [timeframe, setTimeframe] = useState<'1M' | '3M' | '6M' | '1Y' | 'ALL'>(initialTimeframe);
+  const [timeframe, setTimeframe] = useState<'1D' | '1M' | '3M' | '6M' | '1Y' | '3Y' | '5Y' | 'ALL'>(initialTimeframe);
   const [data, setData] = useState<{
     points: ChartPoint[];
     stats: {
@@ -147,9 +147,9 @@ export default function NavChart({ schemeCode, schemeName, initialTimeframe = '1
           )}
         </div>
 
-        {/* Timeframe selector */}
-        <div style={{ display: 'flex', alignItems: 'center', background: 'var(--bg-pill)', padding: 4, borderRadius: 10, border: '1px solid var(--border)', gap: 4 }}>
-          {(['1M', '3M', '6M', '1Y', 'ALL'] as const).map((tf) => (
+        {/* Timeframe selector (responsive scrollable pill strip) */}
+        <div style={{ display: 'flex', alignItems: 'center', background: 'var(--bg-pill)', padding: 3, borderRadius: 10, border: '1px solid var(--border)', gap: 3, overflowX: 'auto', maxWidth: '100%' }}>
+          {(['1D', '1M', '3M', '6M', '1Y', '3Y', '5Y', 'ALL'] as const).map((tf) => (
             <button
               key={tf}
               onClick={() => setTimeframe(tf)}
@@ -157,12 +157,13 @@ export default function NavChart({ schemeCode, schemeName, initialTimeframe = '1
                 background: timeframe === tf ? 'linear-gradient(135deg, #FF5B00 0%, #FF7700 100%)' : 'transparent',
                 color: timeframe === tf ? '#ffffff' : 'var(--text-muted)',
                 border: 'none',
-                padding: '4px 12px',
+                padding: '4px 10px',
                 borderRadius: 6,
                 fontSize: 11,
                 fontWeight: 700,
                 cursor: 'pointer',
                 transition: 'all 0.15s ease',
+                whiteSpace: 'nowrap',
               }}
             >
               {tf}
