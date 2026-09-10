@@ -5,6 +5,36 @@
   "lastEmailStatus": "success",
   "recentLogs": [
     {
+      "id": "log-1789069555494-q15v",
+      "timestamp": "2026-09-10T19:45:55.494Z",
+      "message": "Updated fund holding: HDFC Flexi Cap Fund",
+      "type": "info"
+    },
+    {
+      "id": "log-1789069555457-bgd7",
+      "timestamp": "2026-09-10T19:45:55.457Z",
+      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
+      "type": "info"
+    },
+    {
+      "id": "log-1789069492029-86g6",
+      "timestamp": "2026-09-10T19:44:52.029Z",
+      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
+      "type": "info"
+    },
+    {
+      "id": "log-1789069491623-or3q",
+      "timestamp": "2026-09-10T19:44:51.623Z",
+      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
+      "type": "info"
+    },
+    {
+      "id": "log-1789069262114-01i8",
+      "timestamp": "2026-09-10T19:41:02.114Z",
+      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
+      "type": "info"
+    },
+    {
       "id": "log-1789069001533-ir51",
       "timestamp": "2026-09-10T19:36:41.533Z",
       "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
@@ -61,36 +91,6 @@
     {
       "id": "log-1789045206208-ifor",
       "timestamp": "2026-09-10T13:00:06.208Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789045206134-il17",
-      "timestamp": "2026-09-10T13:00:06.134Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789045132174-a4kp",
-      "timestamp": "2026-09-10T12:58:52.174Z",
-      "message": "Portfolio updated: 5 funds saved",
-      "type": "info"
-    },
-    {
-      "id": "log-1789045124289-qopw",
-      "timestamp": "2026-09-10T12:58:44.289Z",
-      "message": "Portfolio updated: 5 funds saved",
-      "type": "info"
-    },
-    {
-      "id": "log-1789045066541-6zxj",
-      "timestamp": "2026-09-10T12:57:46.541Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789045036657-stcf",
-      "timestamp": "2026-09-10T12:57:16.657Z",
       "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
       "type": "info"
     }
