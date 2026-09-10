@@ -5,6 +5,18 @@
   "lastEmailStatus": "success",
   "recentLogs": [
     {
+      "id": "log-1789069001533-ir51",
+      "timestamp": "2026-09-10T19:36:41.533Z",
+      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
+      "type": "info"
+    },
+    {
+      "id": "log-1789069001117-xskw",
+      "timestamp": "2026-09-10T19:36:41.117Z",
+      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
+      "type": "info"
+    },
+    {
       "id": "log-1789068899986-14bd",
       "timestamp": "2026-09-10T19:34:59.986Z",
       "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
@@ -80,156 +92,6 @@
       "id": "log-1789045036657-stcf",
       "timestamp": "2026-09-10T12:57:16.657Z",
       "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789045036589-a623",
-      "timestamp": "2026-09-10T12:57:16.589Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789044998868-514k",
-      "timestamp": "2026-09-10T12:56:38.868Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789044998799-p9rp",
-      "timestamp": "2026-09-10T12:56:38.799Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789044908370-ziff",
-      "timestamp": "2026-09-10T12:55:08.371Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789044872394-67t5",
-      "timestamp": "2026-09-10T12:54:32.394Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789044872332-cvr8",
-      "timestamp": "2026-09-10T12:54:32.332Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789044718003-lgrj",
-      "timestamp": "2026-09-10T12:51:58.003Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789044717949-0mp4",
-      "timestamp": "2026-09-10T12:51:57.950Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789044593162-nqf5",
-      "timestamp": "2026-09-10T12:49:53.162Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789044593092-zqr8",
-      "timestamp": "2026-09-10T12:49:53.092Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789044578403-r9kz",
-      "timestamp": "2026-09-10T12:49:38.403Z",
-      "message": "Test email sent to rajeshpub1@gmail.com for date 09-09-2026",
-      "type": "success"
-    },
-    {
-      "id": "log-1789044563591-tni2",
-      "timestamp": "2026-09-10T12:49:23.591Z",
-      "message": "Test email sent to rajeshpub1@gmail.com for date 09-09-2026",
-      "type": "success"
-    },
-    {
-      "id": "log-1789044469380-8okp",
-      "timestamp": "2026-09-10T12:47:49.380Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789043464676-i2kc",
-      "timestamp": "2026-09-10T12:31:04.676Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789043464602-aljg",
-      "timestamp": "2026-09-10T12:31:04.602Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789043092075-mcr9",
-      "timestamp": "2026-09-10T12:24:52.075Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789043092026-6924",
-      "timestamp": "2026-09-10T12:24:52.026Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789041831570-2rmq",
-      "timestamp": "2026-09-10T12:03:51.570Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789041831520-q6f4",
-      "timestamp": "2026-09-10T12:03:51.520Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789037960360-64zj",
-      "timestamp": "2026-09-10T10:59:20.360Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789037960305-3fnh",
-      "timestamp": "2026-09-10T10:59:20.305Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789037528850-ixbb",
-      "timestamp": "2026-09-10T10:52:08.850Z",
-      "message": "Test email sent to rajeshpub1@gmail.com for date 09-09-2026",
-      "type": "success"
-    },
-    {
-      "id": "log-1789037477741-xhxa",
-      "timestamp": "2026-09-10T10:51:17.741Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "log-1789037477555-0lev",
-      "timestamp": "2026-09-10T10:51:17.555Z",
-      "message": "EOD Scheduler started with cron: \"*/20 21,22,23 * * 1-5\" (Asia/Kolkata)",
-      "type": "info"
-    },
-    {
-      "id": "init-1",
-      "timestamp": "2026-09-10T10:51:17.546Z",
-      "message": "Portfolio initialized with 5 INDmoney tracking mutual funds",
       "type": "info"
     }
   ],
