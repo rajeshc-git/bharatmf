@@ -1,0 +1,13 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/api/auth/otp/route": "/api/auth/otp",
+  "/api/auth/session/route": "/api/auth/session",
+  "/api/auth/verify/route": "/api/auth/verify",
+  "/api/email/route": "/api/email",
+  "/api/history/route": "/api/history",
+  "/api/portfolio/route": "/api/portfolio",
+  "/api/search/route": "/api/search",
+  "/api/sync/route": "/api/sync",
+  "/page": "/"
+}
