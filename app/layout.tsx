@@ -2,9 +2,14 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'MF NAV Tracker • Daily Mutual Fund EOD Digest',
+  title: 'Bharat MF • Daily Mutual Fund NAV Tracker & EOD Notifier',
   description:
-    'Ultra-fast Indian Mutual Fund NAV Tracker powered by MFapi.in and automated Gmail SMTP notifications.',
+    'Ultra-fast Indian Mutual Fund NAV Tracker powered by AMFI MFapi.in and automated Gmail notifications.',
+  icons: {
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  },
 };
 
 export default function RootLayout({

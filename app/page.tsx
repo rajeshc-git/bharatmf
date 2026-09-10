@@ -26,6 +26,7 @@ import {
 } from 'lucide-react';
 import { PortfolioSummary, AppState, FundHolding } from '@/lib/types';
 import NavChart from '@/components/NavChart';
+import IndiaFlag from '@/components/IndiaFlag';
 
 function formatCompactINR(val: number): string {
   const abs = Math.abs(val);
@@ -348,8 +349,8 @@ export default function Dashboard() {
         <div style={{ maxWidth: 480, width: '100%', textAlign: 'center' }}>
           
           {/* Tag Pill */}
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'var(--bg-pill)', border: '1px solid var(--border)', padding: '5px 14px', borderRadius: 9999, marginBottom: 20 }}>
-            <span>🇮🇳</span>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'var(--bg-pill)', border: '1px solid var(--border)', padding: '6px 14px', borderRadius: 9999, marginBottom: 20 }}>
+            <IndiaFlag width={18} height={12} />
             <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--text-secondary)' }}>Built for India</span>
           </div>
 
@@ -470,7 +471,10 @@ export default function Dashboard() {
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                 <span className="brand-text">Bharat MF</span>
-                <span className="tag-india">🇮🇳 India</span>
+                <span className="tag-india" style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+                  <IndiaFlag width={15} height={10} />
+                  <span>India</span>
+                </span>
               </div>
             </div>
           </div>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF5B00" />
+      <stop offset="100%" stop-color="#FF7700" />
+    </linearGradient>
+    <clipPath id="flagClip">
+      <rect x="18" y="18" width="10" height="7" rx="1.5" />
+    </clipPath>
+  </defs>
+  
+  <!-- Rounded Base Icon -->
+  <rect width="32" height="32" rx="8" fill="url(#bgGrad)" />
+  
+  <!-- Financial Growth Chart Path -->
+  <path d="M6 22 L11 16 L16 19 L26 8" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  <circle cx="26" cy="8" r="2.2" fill="#FFFFFF" />
+
+  <!-- India Flag Mini Badge in bottom right -->
+  <g clip-path="url(#flagClip)">
+    <rect x="18" y="18" width="10" height="2.33" fill="#FF9933" />
+    <rect x="18" y="20.33" width="10" height="2.34" fill="#FFFFFF" />
+    <rect x="18" y="22.67" width="10" height="2.33" fill="#138808" />
+    <circle cx="23" cy="21.5" r="0.9" fill="none" stroke="#000080" stroke-width="0.3" />
+  </g>
+</svg>

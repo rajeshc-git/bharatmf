@@ -133,8 +133,12 @@ export function generateEmailHtml(summary: PortfolioSummary, isTest = false): st
               <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td>
-                    <div style="display: inline-flex; align-items: center; gap: 6px; background-color: #FFF7ED; border: 1px solid #FFEDD5; color: #EA580C; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; padding: 3px 10px; border-radius: 9999px;">
-                      <span>🇮🇳</span>
+                    <div style="display: inline-flex; align-items: center; gap: 8px; background-color: #FFF7ED; border: 1px solid #FFEDD5; color: #EA580C; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; padding: 4px 12px; border-radius: 9999px;">
+                      <span style="display: inline-block; width: 14px; height: 10px; border-radius: 2px; overflow: hidden; vertical-align: middle; box-shadow: 0 0 1px rgba(0,0,0,0.3); line-height: 0;">
+                        <span style="display: block; height: 3.3px; background-color: #FF9933;"></span>
+                        <span style="display: block; height: 3.4px; background-color: #FFFFFF;"></span>
+                        <span style="display: block; height: 3.3px; background-color: #138808;"></span>
+                      </span>
                       <span>${isTest ? 'TEST EMAIL &bull; ' : ''}Bharat MF NAV Update</span>
                     </div>
                     <h1 style="color: #0F172A; font-size: 22px; font-weight: 800; margin: 12px 0 4px 0; letter-spacing: -0.5px;">
