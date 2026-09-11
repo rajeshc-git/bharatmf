@@ -678,14 +678,16 @@ export default function Dashboard() {
             </div>
           </div>
 
-          <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 12, paddingTop: 18, fontSize: 12, color: 'var(--text-muted)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <div className="hero-info-bar">
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
               <span style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--text-secondary)', fontWeight: 600 }}>
                 <CheckCircle2 size={16} color="var(--green)" />
                 {summary?.funds.length} Funds Active & Tracked
               </span>
-              <span>&bull;</span>
-              <span>Next EOD Release: <strong style={{ color: 'var(--orange)' }}>Tonight 9:00 PM – 11:30 PM IST</strong></span>
+              <span className="hero-eod-detail">
+                <span>&bull; </span>
+                Next EOD Release: <strong style={{ color: 'var(--orange)' }}>Tonight 9:00 PM – 11:30 PM IST</strong>
+              </span>
             </div>
           </div>
         </section>
@@ -767,20 +769,19 @@ export default function Dashboard() {
                     {/* Gain / Loss */}
                     <div className="fund-stat-cell">
                       <div className="fund-stat-label">Gain/ Loss</div>
-                      <div className={`metric-number ${fundPositive ? 'gain-positive' : 'gain-negative'}`} style={{ fontSize: 15, marginTop: 2 }}>
-                        <span>{fundPositive ? '▲' : '▼'}</span>
-                        <span>{formatCompactINR(fund.totalGainLoss)}</span>
-                        <span style={{ fontSize: 11, marginLeft: 2 }}>
-                          {fundPositive ? '+' : ''}{fund.totalGainLossPercent.toFixed(2)}%
-                        </span>
+                      <div className="fund-stat-val" style={{ color: fundPositive ? 'var(--green)' : 'var(--red)' }}>
+                        {fundPositive ? '▲' : '▼'} {formatCompactINR(fund.totalGainLoss)}
                       </div>
-                      <div style={{ fontSize: 11, fontWeight: 700, color: todayPositive ? 'var(--green)' : 'var(--red)', marginTop: 1 }}>
+                      <div className="fund-stat-sub" style={{ color: fundPositive ? 'var(--green)' : 'var(--red)', fontWeight: 700 }}>
+                        {fundPositive ? '+' : ''}{fund.totalGainLossPercent.toFixed(2)}%
+                      </div>
+                      <div className="fund-stat-sub" style={{ color: todayPositive ? 'var(--green)' : 'var(--red)', fontWeight: 700 }}>
                         Today: {todayPositive ? '+' : ''}{fund.oneDayChangePercent.toFixed(2)}%
                       </div>
                     </div>
                   </div>
 
-                  {/* Action Buttons: View Historical NAV Chart & Edit */}
+                  {/* Action Buttons: Symmetrical on mobile */}
                   <div className="fund-actions">
                     <button
                       onClick={() => setChartFund(fund)}
@@ -797,7 +798,8 @@ export default function Dashboard() {
                       className="btn-dark"
                       style={{ padding: '6px 12px', fontSize: 11 }}
                     >
-                      Edit
+                      <Sliders size={13} />
+                      <span>Edit</span>
                     </button>
                   </div>
 
@@ -822,29 +824,29 @@ export default function Dashboard() {
 
       </main>
 
-      {/* MODAL 1: Interactive Historical NAV Chart */}
+      {/* MODAL 1: Interactive Historical NAV Chart — Full-screen bottom sheet on mobile */}
       {chartFund && (
         <div className="modal-overlay" onClick={() => setChartFund(null)}>
-          <div className="modal-sheet" style={{ maxWidth: 740 }} onClick={(e) => e.stopPropagation()}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: 16, borderBottom: '1px solid var(--border)' }}>
-              <div>
+          <div className="modal-sheet modal-chart" onClick={(e) => e.stopPropagation()}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: 12, borderBottom: '1px solid var(--border)', flexShrink: 0 }}>
+              <div style={{ minWidth: 0 }}>
                 <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--orange)', textTransform: 'uppercase', letterSpacing: 0.5 }}>
                   AMFI Scheme {chartFund.schemeCode}
                 </div>
-                <h3 style={{ fontSize: 18, fontWeight: 800, color: 'var(--text-primary)', marginTop: 2 }}>
+                <h3 style={{ fontSize: 16, fontWeight: 800, color: 'var(--text-primary)', marginTop: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                   {chartFund.shortName}
                 </h3>
               </div>
-              <button onClick={() => setChartFund(null)} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', padding: 4 }}>
-                <X size={20} />
+              <button onClick={() => setChartFund(null)} style={{ background: 'var(--bg-pill)', border: '1px solid var(--border)', borderRadius: 10, color: 'var(--text-muted)', cursor: 'pointer', padding: 8, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <X size={18} />
               </button>
             </div>
 
-            <div style={{ marginTop: 20 }}>
+            <div style={{ marginTop: 14, flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
               <NavChart schemeCode={chartFund.schemeCode} schemeName={chartFund.shortName} />
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 16 }}>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 12, flexShrink: 0 }}>
               <button onClick={() => setChartFund(null)} className="btn-dark" style={{ fontSize: 12 }}>
                 Close
               </button>

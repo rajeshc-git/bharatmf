@@ -34,6 +34,27 @@ export default function NavChart({ schemeCode, schemeName, initialTimeframe = '1
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const chartWrapperRef = useRef<HTMLDivElement>(null);
+
+  // Responsive dimensions via ResizeObserver
+  const [chartDims, setChartDims] = useState({ width: 680, height: 290 });
+
+  useEffect(() => {
+    const el = chartWrapperRef.current;
+    if (!el) return;
+
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const w = entry.contentRect.width;
+        // Height scales based on width — more cinematic on wider screens, compact on mobile
+        const h = w < 400 ? Math.max(200, w * 0.55) : w < 600 ? w * 0.45 : 290;
+        setChartDims({ width: Math.round(w), height: Math.round(h) });
+      }
+    });
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   // Load saved chart style preference
   useEffect(() => {
@@ -76,10 +97,16 @@ export default function NavChart({ schemeCode, schemeName, initialTimeframe = '1
   const points = data?.points || [];
   const stats = data?.stats;
 
-  // Chart dimensions
-  const width = 680;
-  const height = 290;
-  const padding = { top: 32, right: 24, bottom: 42, left: 24 };
+  // Responsive chart dimensions
+  const width = chartDims.width;
+  const height = chartDims.height;
+  const isMobile = width < 480;
+  const padding = {
+    top: isMobile ? 24 : 32,
+    right: isMobile ? 12 : 24,
+    bottom: isMobile ? 32 : 42,
+    left: isMobile ? 12 : 24,
+  };
 
   const innerWidth = width - padding.left - padding.right;
   const innerHeight = height - padding.top - padding.bottom;
@@ -189,21 +216,18 @@ export default function NavChart({ schemeCode, schemeName, initialTimeframe = '1
       ? '#3B82F6'
       : '#FF7700';
 
+  // Responsive sizes for touch targets
+  const dotRadiusOuter = isMobile ? 12 : 10;
+  const dotRadiusInner = isMobile ? 6 : 5;
+  const crosshairWidth = isMobile ? 2.2 : 1.8;
+  const lineStrokeWidth = isMobile ? '2.6' : chartStyle === 'indmoney' ? '2.4' : '3.0';
+  const tooltipWidth = isMobile ? 90 : 110;
+  const tooltipFontSize = isMobile ? 10 : 11;
+
   return (
-    <div
-      ref={containerRef}
-      style={{
-        background: 'var(--bg-box)',
-        borderRadius: 20,
-        border: '1px solid var(--border)',
-        padding: '20px 20px',
-        position: 'relative',
-        userSelect: 'none',
-        WebkitUserSelect: 'none',
-      }}
-    >
+    <div ref={containerRef} className="chart-container">
       {/* Top Header: Performance Badge & Chart Style Toggler */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: 12 }}>
+      <div className="chart-header">
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <span style={{ fontSize: 13, fontWeight: 800, color: 'var(--orange)', textTransform: 'uppercase', letterSpacing: 0.6 }}>
             NAV Pulse
@@ -228,7 +252,7 @@ export default function NavChart({ schemeCode, schemeName, initialTimeframe = '1
         </div>
 
         {/* 3 Chart Visualizer Style Switcher */}
-        <div style={{ display: 'flex', alignItems: 'center', background: 'var(--bg-pill)', padding: 3, borderRadius: 10, border: '1px solid var(--border)', gap: 2 }}>
+        <div className="chart-style-switcher">
           <button
             onClick={() => changeChartStyle('groww')}
             style={{
@@ -298,11 +322,11 @@ export default function NavChart({ schemeCode, schemeName, initialTimeframe = '1
       </div>
 
       {/* Prominent Live NAV, Percentage & Date Banner */}
-      <div style={{ background: 'var(--bg-pill)', border: '1px solid var(--border)', borderRadius: 14, padding: '12px 16px', marginBottom: 14 }}>
-        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', justifyContent: 'space-between', gap: 10 }}>
+      <div className="chart-nav-banner">
+        <div className="chart-nav-banner-top">
           <div>
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: 10 }}>
-              <span style={{ fontSize: 28, fontWeight: 900, color: 'var(--text-primary)', letterSpacing: -0.8 }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap' }}>
+              <span style={{ fontSize: isMobile ? 22 : 28, fontWeight: 900, color: 'var(--text-primary)', letterSpacing: -0.8 }}>
                 ₹{currentHoverNav.toFixed(2)}
               </span>
               <span
@@ -310,12 +334,12 @@ export default function NavChart({ schemeCode, schemeName, initialTimeframe = '1
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: 4,
-                  fontSize: 13,
+                  fontSize: isMobile ? 11 : 13,
                   fontWeight: 800,
                   color: isScrubPositive ? 'var(--green)' : 'var(--red)',
                 }}
               >
-                {isScrubPositive ? <TrendingUp size={14} /> : <TrendingDown size={14} />}
+                {isScrubPositive ? <TrendingUp size={isMobile ? 12 : 14} /> : <TrendingDown size={isMobile ? 12 : 14} />}
                 <span>
                   {isScrubPositive ? '+' : ''}₹{scrubDiff.toFixed(2)} ({isScrubPositive ? '+' : ''}
                   {scrubDiffPercent.toFixed(2)}%)
@@ -324,10 +348,10 @@ export default function NavChart({ schemeCode, schemeName, initialTimeframe = '1
             </div>
           </div>
 
-          {/* Large Visible Date Tag for Mobile */}
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'var(--orange-bg)', border: '1px solid var(--border-orange)', padding: '5px 12px', borderRadius: 10 }}>
-            <span style={{ fontSize: 11, color: 'var(--text-secondary)', fontWeight: 700 }}>NAV Date:</span>
-            <span style={{ fontSize: 13, fontWeight: 800, color: 'var(--orange)' }}>
+          {/* Large Visible Date Tag */}
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'var(--orange-bg)', border: '1px solid var(--border-orange)', padding: '4px 10px', borderRadius: 10 }}>
+            <span style={{ fontSize: 10, color: 'var(--text-secondary)', fontWeight: 700 }}>NAV Date:</span>
+            <span style={{ fontSize: isMobile ? 11 : 13, fontWeight: 800, color: 'var(--orange)' }}>
               {activeCoord ? activeCoord.point.date : points[points.length - 1]?.date || 'Latest'}
             </span>
           </div>
@@ -335,7 +359,7 @@ export default function NavChart({ schemeCode, schemeName, initialTimeframe = '1
 
         {/* 52W / Period Range metrics */}
         {stats && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: 14, fontSize: 11, marginTop: 8, color: 'var(--text-muted)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 8 : 14, fontSize: 11, marginTop: 8, color: 'var(--text-muted)', flexWrap: 'wrap' }}>
             <span>
               Low: <strong style={{ color: 'var(--text-primary)' }}>₹{stats.low.toFixed(2)}</strong>
             </span>
@@ -343,21 +367,18 @@ export default function NavChart({ schemeCode, schemeName, initialTimeframe = '1
             <span>
               High: <strong style={{ color: 'var(--text-primary)' }}>₹{stats.high.toFixed(2)}</strong>
             </span>
-            <span style={{ color: 'var(--text-dim)' }}>&bull;</span>
-            <span style={{ color: 'var(--text-dim)' }}>Drag/touch chart to scrub history</span>
+            <span className="chart-scrub-hint" style={{ color: 'var(--text-dim)' }}>
+              <span style={{ color: 'var(--text-dim)' }}>&bull;</span> Drag/touch chart to scrub history
+            </span>
           </div>
         )}
       </div>
 
       {/* SVG Interactive Canvas with Touch Gestures */}
       <div
-        style={{
-          position: 'relative',
-          width: '100%',
-          height: height,
-          touchAction: 'none',
-          cursor: 'crosshair',
-        }}
+        ref={chartWrapperRef}
+        className="chart-svg-wrapper"
+        style={{ height: height }}
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
@@ -387,7 +408,8 @@ export default function NavChart({ schemeCode, schemeName, initialTimeframe = '1
         <svg
           ref={svgRef}
           viewBox={`0 0 ${width} ${height}`}
-          style={{ width: '100%', height: '100%', overflow: 'visible' }}
+          preserveAspectRatio="none"
+          style={{ width: '100%', height: '100%', overflow: 'visible', display: 'block' }}
         >
           <defs>
             <linearGradient id={`grad-${schemeCode}-${chartStyle}`} x1="0" y1="0" x2="0" y2="1">
@@ -435,7 +457,7 @@ export default function NavChart({ schemeCode, schemeName, initialTimeframe = '1
               d={pathD}
               fill="none"
               stroke={primaryStroke}
-              strokeWidth={chartStyle === 'indmoney' ? '2.4' : '3.0'}
+              strokeWidth={lineStrokeWidth}
               strokeLinecap="round"
               strokeLinejoin="round"
               filter={`url(#glow-${schemeCode})`}
@@ -476,33 +498,33 @@ export default function NavChart({ schemeCode, schemeName, initialTimeframe = '1
                 x2={activeCoord.x}
                 y2={height - padding.bottom}
                 stroke={secondaryStroke}
-                strokeWidth="1.8"
+                strokeWidth={crosshairWidth}
                 strokeDasharray="4 4"
                 opacity="0.85"
               />
 
               {/* Floating Tooltip Pill */}
-              <g transform={`translate(${Math.max(65, Math.min(width - 65, activeCoord.x))}, ${padding.top - 12})`}>
-                <rect x="-55" y="-12" width="110" height="22" rx="6" fill="#1E293B" stroke={primaryStroke} strokeWidth="1.2" />
-                <text x="0" y="3" textAnchor="middle" fill="#FFFFFF" fontSize="11" fontWeight="800">
+              <g transform={`translate(${Math.max(tooltipWidth / 2 + 10, Math.min(width - tooltipWidth / 2 - 10, activeCoord.x))}, ${padding.top - 12})`}>
+                <rect x={-tooltipWidth / 2} y="-12" width={tooltipWidth} height="22" rx="6" fill="#1E293B" stroke={primaryStroke} strokeWidth="1.2" />
+                <text x="0" y="3" textAnchor="middle" fill="#FFFFFF" fontSize={tooltipFontSize} fontWeight="800">
                   ₹{activeCoord.point.nav.toFixed(2)}
                 </text>
               </g>
 
-              {/* Outer pulsing ring */}
-              <circle cx={activeCoord.x} cy={activeCoord.y} r="10" fill={primaryStroke} opacity="0.35" />
+              {/* Outer pulsing ring — larger on mobile for touch */}
+              <circle cx={activeCoord.x} cy={activeCoord.y} r={dotRadiusOuter} fill={primaryStroke} opacity="0.35" />
               {/* Center point */}
-              <circle cx={activeCoord.x} cy={activeCoord.y} r="5" fill="#FFFFFF" stroke={primaryStroke} strokeWidth="3" />
+              <circle cx={activeCoord.x} cy={activeCoord.y} r={dotRadiusInner} fill="#FFFFFF" stroke={primaryStroke} strokeWidth="3" />
             </g>
           )}
 
-          {/* Large Visible Start and End Date labels at bottom */}
+          {/* Start and End Date labels at bottom */}
           {coords.length > 0 && (
-            <g fontSize="12" fill="var(--text-secondary)" fontWeight="700">
-              <text x={padding.left} y={height - 12} textAnchor="start">
+            <g fontSize={isMobile ? 10 : 12} fill="var(--text-secondary)" fontWeight="700">
+              <text x={padding.left} y={height - (isMobile ? 8 : 12)} textAnchor="start">
                 {coords[0]!.point.date}
               </text>
-              <text x={width - padding.right} y={height - 12} textAnchor="end">
+              <text x={width - padding.right} y={height - (isMobile ? 8 : 12)} textAnchor="end">
                 {coords[coords.length - 1]!.point.date}
               </text>
             </g>
@@ -510,23 +532,9 @@ export default function NavChart({ schemeCode, schemeName, initialTimeframe = '1
         </svg>
       </div>
 
-      {/* Bottom Controls: Responsive Scrollable Timeframe Pills */}
-      <div style={{ marginTop: 14, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            background: 'var(--bg-pill)',
-            padding: '4px',
-            borderRadius: 14,
-            border: '1px solid var(--border)',
-            gap: 4,
-            overflowX: 'auto',
-            maxWidth: '100%',
-            scrollbarWidth: 'none',
-            WebkitOverflowScrolling: 'touch',
-          }}
-        >
+      {/* Bottom Controls: Responsive Timeframe Pills */}
+      <div className="chart-timeframe-row">
+        <div className="chart-timeframe-pills">
           {(['1D', '1M', '3M', '6M', '1Y', '3Y', '5Y', 'ALL'] as const).map((tf) => (
             <button
               key={tf}
@@ -534,19 +542,7 @@ export default function NavChart({ schemeCode, schemeName, initialTimeframe = '1
                 setHoverIndex(null);
                 setTimeframe(tf);
               }}
-              style={{
-                background: timeframe === tf ? 'linear-gradient(135deg, #FF5B00 0%, #FF7700 100%)' : 'transparent',
-                color: timeframe === tf ? '#ffffff' : 'var(--text-muted)',
-                border: 'none',
-                padding: '6px 14px',
-                borderRadius: 9,
-                fontSize: 12,
-                fontWeight: 800,
-                cursor: 'pointer',
-                transition: 'all 0.15s ease',
-                whiteSpace: 'nowrap',
-                touchAction: 'manipulation',
-              }}
+              className={`chart-tf-btn ${timeframe === tf ? 'active' : ''}`}
             >
               {tf}
             </button>
@@ -556,4 +552,3 @@ export default function NavChart({ schemeCode, schemeName, initialTimeframe = '1
     </div>
   );
 }
-
