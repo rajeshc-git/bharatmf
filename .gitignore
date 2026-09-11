@@ -1,5 +1,9 @@
 # dependencies (bun install)
 node_modules
+package-lock.json
+
+# runtime state
+data/state.json
 
 # output
 .next
